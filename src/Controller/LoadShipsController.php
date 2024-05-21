@@ -92,7 +92,7 @@ class LoadShipsController extends AbstractController
         }
         $ship_clean['Role'] = $ship_data['data']['type']['en_EN'];
         $ship_clean['Description'] = $ship_data['data']['description']['en_EN'];
-        $ship_clean['Size'] = $ship_data['data']['description']['en_EN'];
+        $ship_clean['Size'] = $ship_data['data']['size']['en_EN'];
         $ship_clean['Manufacturer'] = $ship_data['data']['manufacturer']['name'];
         try {
             $ship_clean['Irl_price'] = $ship_data['data']['skus'][0]['price'];
@@ -126,7 +126,7 @@ class LoadShipsController extends AbstractController
         }
         $ship->setRole($ship_data['Role']);
         $ship->setDescription($ship_data['Description']);
-        $ship->setSize((int)$ship_data['Size']);
+        $ship->setSize($ship_data['Size']);
         $ship->setManufacturer($ship_data['Manufacturer']);
         try {
             $ship->setIrlPrice((int)$ship_data['Irl_price']);

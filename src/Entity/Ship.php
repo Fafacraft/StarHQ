@@ -44,7 +44,7 @@ class Ship
     private ?string $description = null;
 
     #[ORM\Column]
-    private ?int $size = null;
+    private ?string $size = null;
 
     #[ORM\Column(length: 255)]
     private ?string $manufacturer = null;
@@ -177,12 +177,12 @@ class Ship
         return $this;
     }
 
-    public function getSize(): ?int
+    public function getSize(): ?string
     {
         return $this->size;
     }
 
-    public function setSize(int $size): static
+    public function setSize(string $size): static
     {
         $this->size = $size;
 
