@@ -2,7 +2,7 @@
 Une companion webApp pour le jeu Star Citizen, afin de facilité la gestion de ses vaisseaux en jeu.
 
 Par Fabien ARTHUR et Matthieu DENIEUL LE DIRAISON
-<br>
+~
 ## Intro
 __Objectif principal :__
 * Pouvoir se connecter et ajouter/modifier les vaisseau de son hangar personnel.
@@ -24,7 +24,7 @@ __Hors scope :__
 * Interaction avec des données dynamiques (en temps réel) du jeu
 * Messagerie / Fonctionnalités avancé de chat
 * Vérifications des vaisseaux et de leurs appartenance véritable en jeu
-<br>
+~
 ## Tech
 ###
 __Symfony :__
@@ -43,20 +43,20 @@ Possibilités de scripts __python__ ;
 Sources ;
 * API fan-made pour récupéré des données, notamment sur les vaisseaux https://api.star-citizen.wiki/dashboard
 
-<br>
+~
 
 ## Suivi
 __Au 23/05/2024__
 * Reflexion sur l'idée du projet, ses fonctionnalités nécessaires et leurs faisabilités, + des idées futurs
 * Reflexion sur les technologies à utilisé ; nous en sommes arrivé au framework Symfony, qui convient au projet et offre une base solide de fonctionnalités et de documentations.
 * Apprentissage et découverte du framework, confirmation du choix qui convient bien à notre projet
-<br>
+~
 * Setup de l'environnement de développement, guide du README sur son installation pour pouvoir travailler sur plusieurs postes aisément
 	* Symfony permet notamment facilement de reproduire le schéma de la base de donnée sur tout les environnements existants, facilement, grâce au système de migration.
 * Premiers contrôleurs de tests
 * Idée d'un visuel pour notre application, sur figma (first_visual_idea.png)
 * Début de conception d'un MCD
-<br>
+~
 * Début de développement ; fonction de chargement des données de vaisseau depuis l'API externe (https://api.star-citizen.wiki/dashboard) à la db interne  
 	* endpoint : /load/ship  
 	* import_ship_data.png & src/controller/LoadShipController.php
