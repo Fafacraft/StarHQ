@@ -51,6 +51,17 @@
             },
             minLength: 2
         });
+
+        // Redirect when Enter key is pressed
+        $("#ship-search").on("keypress", function(event) {
+            if (event.which === 13) { // 13 is the Enter key code
+                // Get the selected ship name
+                var selectedShip = $(this).val();
+                
+                // Redirect to the ship page
+                window.location.href = "{{ path('ship_page') }}?name=" + encodeURIComponent(selectedShip);
+            }
+        });
     });
 </script>
 {% endblock %}
