@@ -2,18 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\Ship;
 use App\Entity\Test;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\ShipRepository;
+use PHPUnit\Framework\Error\Notice;
 
 class FirstController extends AbstractController
 {
+    
+    private $shipRepository;
     private $em;
-    public function __construct(EntityManagerInterface $em){
+    public function __construct(EntityManagerInterface $em, ShipRepository $shipRepository){
         $this->em = $em;
+        $this->shipRepository = $shipRepository;
     }
 
     #[Route('/first/{name}', name: 'app_first', defaults:['name' => null], methods:['GET', 'HEAD'])]
@@ -27,13 +34,18 @@ class FirstController extends AbstractController
         ]);
     }
 
-    #[Route('/second', name: 'second')]
-    public function second(EntityManagerInterface $em): Response
+    #[Route('/ship_page', name: 'ship_page')]
+    public function second(Request $request, LoggerInterface $logger): Response
     {
-        $repository = $this->em->getRepository(Test::class);
-        $movies = $repository->findAll();
+        $shipName = $request->query->get('name');
+        $ship = $this->shipRepository->findOneByName($shipName);
 
-        dd($movies);
-        return $this->render('index.html.twig');
+        // if we could not find the ship
+        if ($ship == Null) {
+            $logger->notice("Couldn't find ship named " . $shipName);
+            return $this->redirectToRoute('app_first');
+        }
+        print("This is " . $shipName . " ship page");
+        return new Response();
     }
 }
