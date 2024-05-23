@@ -95,7 +95,7 @@ class LoadShipsController extends AbstractController
         try {
             $ship_clean['Size'] = $ship_data['data']['size']['en_EN'];
         } catch (Exception $e) {
-            $logger->notice($ship_data['data']['name'] . " has no irl_price");
+            $logger->notice($ship_data['data']['name'] . " has no size");
         }
         $ship_clean['Manufacturer'] = $ship_data['data']['manufacturer']['name'];
         try {
@@ -130,7 +130,11 @@ class LoadShipsController extends AbstractController
         }
         $ship->setRole($ship_data['Role']);
         $ship->setDescription($ship_data['Description']);
-        $ship->setSize($ship_data['Size']);
+        try {
+            $ship->setSize($ship_data['Size']);
+        } catch (Exception $e) {
+            // no size, already noticed
+        }
         $ship->setManufacturer($ship_data['Manufacturer']);
         try {
             $ship->setIrlPrice((int)$ship_data['Irl_price']);
