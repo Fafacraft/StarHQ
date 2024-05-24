@@ -23,7 +23,12 @@
             {# comment #}
             <li> {{test}} </li>
         {% endfor %}
-        {{ author }}
+        
+        {% if app.user %}
+        You are logged as : {{ app.user.userIdentifier }}
+        {% else %}
+        You are not logged in
+        {% endif %}
 
         <img src="{{ asset('images/2020-12-19 18_55_09-Twitch.png') }}">
 

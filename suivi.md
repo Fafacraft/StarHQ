@@ -65,3 +65,9 @@ __Au 23/05/2024__
 	* search_bar.png
 
 * Prochaine étape : raffiné le MCD et la bd pour intégré les utilisateurs, ayant chacun une liste de vaisseau personnel. Différence entre vaisseaux personnel, unique et appartenant au joueur, et le modèle du vaisseau et ses statistiques, commun à tout les vaisseau de ce type et ayant ce nom.
+
+~  
+__24/05/2024__
+* Début de MCD
+* Ajout de la classe User, des fonctions de Register/Login/Logout
+* Essais de restrictions d'accès selon les rôles
