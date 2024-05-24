@@ -71,3 +71,5 @@ __24/05/2024__
 * Début de MCD
 * Ajout de la classe User, des fonctions de Register/Login/Logout
 * Essais de restrictions d'accès selon les rôles
+* Modification du chargement des vaisseau ; au lieu d'une route, est devenu une commande console, cela fait plus de sens.  
+	* Commande app:load-ships

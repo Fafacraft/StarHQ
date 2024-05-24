@@ -43,7 +43,7 @@ class Ship
     #[ORM\Column(length: 1024, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $size = null;
 
     #[ORM\Column(length: 255)]

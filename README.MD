@@ -17,7 +17,7 @@ __Prerequisite__
 6) `symfony server:start`
 
 ### To initialize database
-go to http://127.0.0.1:8000/load/ships and wait for the db to get ships data from external source. (see progress in console)
+`symfony console app:load-ships`  // load ships data from external API into the database
 
 WIP
 

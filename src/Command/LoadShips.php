@@ -1,29 +1,55 @@
 <?php
 
-namespace App\Controller;
+namespace App\Command;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ShipRepository;
 use App\Entity\Ship;
 use Psr\Log\LoggerInterface;
 use Exception;
+use Symfony\Component\Console\Attribute\AsCommand;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-class LoadShipsController extends AbstractController
+#[AsCommand(name: 'app:load-ships')]
+class LoadShips extends Command
 {
-    # This route (re)loads all star citizen from the deutsh Star Citizen wiki API to the database. It is doing 200+ calls, one per ship, please don't spam it
-    #[Route('/load/ships', name: 'app_load_ships')]
-    public function index(EntityManagerInterface $entityManager, ShipRepository $shipRepository, LoggerInterface $logger): Response
+    protected static $defaultName = 'app:load-ships';
+
+    private $entityManager;
+    private $shipRepository;
+    private $logger;
+
+    public function __construct(EntityManagerInterface $entityManager, ShipRepository $shipRepository, LoggerInterface $logger)
     {
-        // get the data, clean, and push to the db
-        $this->pushAllShips($entityManager, $shipRepository, $logger);
-        
-        return $this->redirectToRoute('app_first');
+        $this->entityManager = $entityManager;
+        $this->shipRepository = $shipRepository;
+        $this->logger = $logger;
+
+        parent::__construct();
     }
 
-    private function pushAllShips($entityManager, $shipRepository, $logger) {
+    protected function configure()
+    {
+        $this
+            ->setDescription('Loads all star citizen from the Deutsch Star Citizen wiki API to the database.')
+            ->setHelp('This command (re)loads all star citizen from the Deutsch Star Citizen wiki API to the database. It is doing 200+ calls, please don\'t spam it');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        $output->writeln('Loading ships... For more info, read the server logs');
+        $this->pushAllShips($this->entityManager, $this->shipRepository, $this->logger, $output);
+
+        $io = new SymfonyStyle($input, $output);
+        $io->success('Star Citizen ships loaded successfully!');
+
+        return Command::SUCCESS;
+    }
+
+    private function pushAllShips($entityManager, $shipRepository, $logger, $output) {
         // get the number of ships today
         $total_ships_raw = file_get_contents("https://api.star-citizen.wiki/api/v2/vehicles?limit=1");
         if ($total_ships_raw === false) {
@@ -36,6 +62,8 @@ class LoadShipsController extends AbstractController
 
         $total_int = $total_ships['meta']['total'];
 
+        $output->writeln((string)$total_int . ' ships found');
+
         // get all ships link from the API
         $total_ships_raw = file_get_contents("https://api.star-citizen.wiki/api/v2/vehicles?limit=" . (string)$total_int);
         if ($total_ships_raw === false) {
@@ -46,22 +74,25 @@ class LoadShipsController extends AbstractController
             throw new \Exception('Error parsing JSON ships data.');
         }
 
+        $i = 0;
         // for each ships, get the proper data and push it
         foreach ($total_ships['data'] as $ship_raw) {
             // get the data
-            $ship_clean = $this->getShipData($logger, $ship_raw);
+            $ship_clean = $this->getShipData($logger, $ship_raw, $output);
             if ($ship_clean == null) {
                 // one ship was broken, it happens
                 continue;
             }
             // push to the Db
             $this->addToDb($entityManager, $shipRepository, $ship_clean);
+            $i += 1;
+            $output->writeln((string) $i . '/' . (string)$total_int . ' loaded');
         }
 
         return;
     }
 
-    private function getShipData($logger, $ship_raw) {
+    private function getShipData($logger, $ship_raw, $output) {
         // call the ship data and json'it
         try {
             $ship_data_raw = file_get_contents($ship_raw['link']);
@@ -75,6 +106,7 @@ class LoadShipsController extends AbstractController
             throw new \Exception('Error parsing JSON ship data.');
         }
         $logger->debug('Call to the API of ' . $ship_data['data']['name']);
+        $output->writeln('Loading ' . $ship_data['data']['name'] . '..................');
 
         // get all the data we dream and need to have in our database
         $ship_clean = array();
@@ -89,6 +121,7 @@ class LoadShipsController extends AbstractController
             $ship_clean['Speed_quantum'] = $ship_data['data']['quantum']['quantum_speed'];
         } catch(Exception $e) {
             $logger->notice($ship_data['data']['name'] . " has no detailed info on speed and/or hp");
+            $output->writeln('No detailed info');
         }
         $ship_clean['Role'] = $ship_data['data']['type']['en_EN'];
         $ship_clean['Description'] = $ship_data['data']['description']['en_EN'];
@@ -96,12 +129,14 @@ class LoadShipsController extends AbstractController
             $ship_clean['Size'] = $ship_data['data']['size']['en_EN'];
         } catch (Exception $e) {
             $logger->notice($ship_data['data']['name'] . " has no size");
+            $output->writeln('No size');
         }
         $ship_clean['Manufacturer'] = $ship_data['data']['manufacturer']['name'];
         try {
             $ship_clean['Irl_price'] = $ship_data['data']['skus'][0]['price'];
         } catch (Exception $e) {
             $logger->notice($ship_data['data']['name'] . " has no irl_price");
+            $output->writeln('No irl price');
         }
 
         return $ship_clean;
