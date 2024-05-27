@@ -44,12 +44,17 @@ class ShipImageRepository extends ServiceEntityRepository
     // get the imageLink from the name of the ship
     public function findLinkByName($name): ?string
     {
-        return $this->createQueryBuilder('s')
+        $temp = $this->createQueryBuilder('s')
             ->select('s.imageLink')
             ->andWhere('s.name = :name')
             ->setParameter('name', $name)
             ->getQuery()
-            ->getOneOrNullResult()['imageLink']
+            ->getOneOrNullResult()
         ;
+        if ($temp == null) {
+            return null;
+        } else {
+            return $temp['imageLink'];
+        }
     }
 }
