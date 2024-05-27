@@ -51,4 +51,18 @@ class ShipRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    //Get all ship names and pledge links where pledge link is not null
+    public function findAllPledgeLinks(): array
+    {
+        // Create the QueryBuilder instance
+        $qb = $this->createQueryBuilder('s');
+
+        // Build the query
+        $qb->select('s.Name, s.PledgeLink')
+            ->where($qb->expr()->isNotNull('s.PledgeLink'));
+
+        // Execute the query and get the result
+        return $qb->getQuery()->getResult();
+    }
 }

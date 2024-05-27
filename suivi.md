@@ -54,22 +54,31 @@ __Au 23/05/2024__
 * Setup de l'environnement de développement, guide du README sur son installation pour pouvoir travailler sur plusieurs postes aisément
 	* Symfony permet notamment facilement de reproduire le schéma de la base de donnée sur tout les environnements existants, facilement, grâce au système de migration.
 * Premiers contrôleurs de tests
-* Idée d'un visuel pour notre application, sur figma (first_visual_idea.png)
+* Idée d'un visuel pour notre application, sur figma
+![Alt Text](_suivi/2024.05.23/first_visual_idea.png)
 * Début de conception d'un MCD
 ~
 * Début de développement ; fonction de chargement des données de vaisseau depuis l'API externe (https://api.star-citizen.wiki/dashboard) à la db interne  
 	* endpoint : /load/ship  
-	* import_ship_data.png & src/controller/LoadShipController.php
+	* src/controller/LoadShipController.php
+	![Alt Text](_suivi/2024.05.23/import_ship_data.png)
 * Barre de recherche, autocompletion avec __jquery__, et redirection grâce au nom des vaisseaux
 	*  Dans l'idée de pouvoir selectionner le vaisseau à a jouter à son hangar, depuis la liste de la bdd.
 	* search_bar.png
+	![Alt Text](_suivi/2024.05.23/search_bar.png)
 
 * Prochaine étape : raffiné le MCD et la bd pour intégré les utilisateurs, ayant chacun une liste de vaisseau personnel. Différence entre vaisseaux personnel, unique et appartenant au joueur, et le modèle du vaisseau et ses statistiques, commun à tout les vaisseau de ce type et ayant ce nom.
 
 ~  
 __24/05/2024__
 * Début de MCD
-* Ajout de la classe User, des fonctions de Register/Login/Logout (Logged_in.png)
+* Ajout de la classe User, des fonctions de Register/Login/Logout 
+![Alt Text](_suivi/2024.05.24/Logged_in.png)
 * Essais de restrictions d'accès selon les rôles
 * Modification du chargement des vaisseau ; au lieu d'une route, est devenu une commande console, cela fait plus de sens.  
-	* Commande app:load-ships (load_ship_command.png)
+	* Commande app:load-ships
+	![Alt Text](_suivi/2024.05.24/load_ship_command.png)
+~
+__27/05/2024__
+* Création d'une table ShipImage, récupération des images des vaisseaux par webscrapping des pages du magasin officiel
+* Créé tech_doc.md avec un résumé de l'organisation technique du projet

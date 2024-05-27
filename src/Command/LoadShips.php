@@ -138,6 +138,12 @@ class LoadShips extends Command
             $logger->notice($ship_data['data']['name'] . " has no irl_price");
             $output->writeln('No irl price');
         }
+        try {
+            $ship_clean['PledgeLink'] = $ship_data['data']['pledge_url'];
+        } catch(Exception $e) {
+            $logger->notice($ship_data['data']['name'] . " has no pledge link");
+            $output->writeln('No pledge link');
+        }
 
         return $ship_clean;
     }
@@ -175,6 +181,11 @@ class LoadShips extends Command
             $ship->setIrlPrice((int)$ship_data['Irl_price']);
         } catch(Exception $e) {
             // no Irl price found, already noticed
+        };
+        try {
+            $ship->setPledgeLink($ship_data['PledgeLink']);
+        } catch(Exception $e) {
+            // no pledge link found, already noticed
         };
         
 

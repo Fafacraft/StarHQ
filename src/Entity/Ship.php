@@ -52,6 +52,9 @@ class Ship
     #[ORM\Column(nullable: true)]
     private ?int $irl_price = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $PledgeLink = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -209,6 +212,18 @@ class Ship
     public function setIrlPrice(?int $irl_price): static
     {
         $this->irl_price = $irl_price;
+
+        return $this;
+    }
+
+    public function getPledgeLink(): ?string
+    {
+        return $this->PledgeLink;
+    }
+
+    public function setPledgeLink(?string $PledgeLink): static
+    {
+        $this->PledgeLink = $PledgeLink;
 
         return $this;
     }
