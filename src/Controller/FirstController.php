@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Ship;
 use App\Entity\Test;
+use App\Repository\ShipImageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,20 +18,32 @@ class FirstController extends AbstractController
 {
     
     private $shipRepository;
+    private $shipImageRepository;
     private $em;
-    public function __construct(EntityManagerInterface $em, ShipRepository $shipRepository){
+    public function __construct(EntityManagerInterface $em, ShipRepository $shipRepository, ShipImageRepository $shipImageRepository){
         $this->em = $em;
         $this->shipRepository = $shipRepository;
+        $this->shipImageRepository = $shipImageRepository;
     }
 
     #[Route('/first/{name}', name: 'app_first', defaults:['name' => null], methods:['GET', 'HEAD'])]
-    public function index($name): Response
+    public function index($name, Request $request, LoggerInterface $logger): Response
     {
-        $tests = ["A", "B", "C"];
+        $shipImageLink = null;
+        // get the ship image link
+        if ($name !=null) {     
+            $shipName = $request->query->get('name');
+            $shipImageLink = $this->shipImageRepository->findLinkByName($name);
+            // if we could not find the ship
+            if ($shipImageLink == Null) {
+                $logger->notice("Couldn't find ship named " . $shipName);
+                return $this->redirectToRoute('app_first');
+            }
+        }
 
         return $this->render('first/index.html.twig', [
             'controller_name' => 'FirstController',
-            'tests' => $tests,
+            'shipImageLink' => $shipImageLink,
         ]);
     }
 

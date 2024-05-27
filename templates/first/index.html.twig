@@ -13,16 +13,15 @@
     <form>
         <input type="text" id="ship-search" placeholder="Type a ship name">
     </form>
+    {% if shipImageLink %}
+    <img src="{{ shipImageLink }}">
+    {% endif %}
     <h1>Hello {{ controller_name }}! ✅</h1>
 
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code>D:/_DEV/starHQ/src/Controller/FirstController.php</code></li>
         <li>Your template at <code>D:/_DEV/starHQ/templates/first/index.html.twig</code></li>
-        {% for test in tests %}
-            {# comment #}
-            <li> {{test}} </li>
-        {% endfor %}
         
         {% if app.user %}
         You are logged as : {{ app.user.userIdentifier }}
@@ -64,7 +63,7 @@
                 var selectedShip = $(this).val();
                 
                 // Redirect to the ship page
-                window.location.href = "{{ path('ship_page') }}?name=" + encodeURIComponent(selectedShip);
+                window.location.href = "/first/" + encodeURIComponent(selectedShip);
             }
         });
     });

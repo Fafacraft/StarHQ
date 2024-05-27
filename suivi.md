@@ -54,17 +54,17 @@ __Au 23/05/2024__
 * Setup de l'environnement de développement, guide du README sur son installation pour pouvoir travailler sur plusieurs postes aisément
 	* Symfony permet notamment facilement de reproduire le schéma de la base de donnée sur tout les environnements existants, facilement, grâce au système de migration.
 * Premiers contrôleurs de tests
-* Idée d'un visuel pour notre application, sur figma
+* Idée d'un visuel pour notre application, sur figma  
 ![mobile visual idea](_suivi/2024.05.23/first_visual_idea.png)
 * Début de conception d'un MCD
 ~
 * Début de développement ; fonction de chargement des données de vaisseau depuis l'API externe (https://api.star-citizen.wiki/dashboard) à la db interne  
 	* endpoint : /load/ship  
-	* src/controller/LoadShipController.php
+	* src/controller/LoadShipController.php  
 	![import ship command](_suivi/2024.05.23/import_ship_data.png)
 * Barre de recherche, autocompletion avec __jquery__, et redirection grâce au nom des vaisseaux
 	*  Dans l'idée de pouvoir selectionner le vaisseau à a jouter à son hangar, depuis la liste de la bdd.
-	* search_bar.png
+	* search_bar.png  
 	![search_bar raw](_suivi/2024.05.23/search_bar.png)
 
 * Prochaine étape : raffiné le MCD et la bd pour intégré les utilisateurs, ayant chacun une liste de vaisseau personnel. Différence entre vaisseaux personnel, unique et appartenant au joueur, et le modèle du vaisseau et ses statistiques, commun à tout les vaisseau de ce type et ayant ce nom.
@@ -83,8 +83,11 @@ __24/05/2024__
 * Conception du template de l'interface utilisateur pour une navigation fluide et intuitive.
 * 1er template emplacement des fonctionnalités
 	![Main Page idea](_suivi/2024.05.24/main_page_without_ship_matrix.png)
-	![Login Page idea](_suivi/2024.05.24/login_page.png)
-~
+	![Login Page idea](_suivi/2024.05.24/login_page.png)  
+	
+~  
 __27/05/2024__
 * Création d'une table ShipImage, récupération des images des vaisseaux par webscrapping des pages du magasin officiel
 * Créé tech_doc.md avec un résumé de l'organisation technique du projet
+* Joint les images à la barre de recherche ; la page d'acceuil affiche l'image de la recherche !
+	![Exemple 1](_suivi/2024.05.27/search_and_image1.png) ![Exemple 2](_suivi/2024.05.27/search_and_image2.png)

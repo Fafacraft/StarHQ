@@ -57,8 +57,7 @@ class LoadShipImages extends Command
             }
 
             // some are not hosted on their media server, but on the website server, so ye, some post processing
-            // if it start with /media, add the website before it
-            if (strpos($imageLink, '/https') !== 0) {
+            if (strpos($imageLink, 'https://media.robertsspaceindustries.com/') !== 0) {
                 $imageLink = 'https://robertsspaceindustries.com/' . $imageLink;
             }
 
