@@ -91,3 +91,7 @@ __27/05/2024__
 * Créé tech_doc.md avec un résumé de l'organisation technique du projet
 * Joint les images à la barre de recherche ; la page d'acceuil affiche l'image de la recherche !
 	![Exemple 1](_suivi/2024.05.27/search_and_image1.png) ![Exemple 2](_suivi/2024.05.27/search_and_image2.png)
+
+~
+__28/05/2024__
+* Discussion sur les futurs ajouts et priorités du projets.
