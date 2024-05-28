@@ -95,3 +95,7 @@ __27/05/2024__
 ~
 __28/05/2024__
 * Discussion sur les futurs ajouts et priorités du projets.
+* mise en commun des differentes necessité (bouttons, fonctionnement concret)
+* Reflexion quand au fonctionnement mobile: compatibilité
+* verification des fonctionnalités communes 
+* mise en perspective du temps necessaire pour les differents fonctionnalités
