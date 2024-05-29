@@ -99,3 +99,8 @@ __28/05/2024__
 * Reflexion quand au fonctionnement mobile: compatibilité
 * verification des fonctionnalités communes 
 * mise en perspective du temps necessaire pour les differents fonctionnalités
+
+~
+__29/05/2024__
+* Fait les cartes des vaisseau et l'affichage en liste à partir de leur nom.
+	![Ship List](_suivi/2024.05.29/ship_list.png)

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShipController!{% endblock %}
+
+{% block body %}
+<div class="main_page">
+    <div class="ship_gallery">
+        {% for ship in ships %}
+            {% include 'ship/ship_card.html.twig' with { 'ship': ship } %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
