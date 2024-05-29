@@ -1,11 +1,60 @@
 body {
-    background-color: #243249;
+    background-color: lightgrey;
     margin: 0;
     font-family: 'Orbitron', sans-serif;
 }
 
+.ship_card {
+    display:flex;
+}
+.ship_image {
+    height:200px;
+}
 .info_panel{
-    background-color: #243249;
+    position:relative;
+    background-color: #4094c4;
+    width:500px;
+    height:200px;
+}
+.ship_name {
+    color: #0e3952;
+    margin:0;   
+}
+.ship_category {
+    background-color: rgb(121, 156, 201);
+    color: black;
+    margin:0;
+    padding: 1%;
+    padding-left: 5%;
+    font-size: large;
+}
+.ship_top {
+    display:flex;
+    align-items: center;
+    margin-left: 5%;
+}
+.ship_size {
+    margin-left: 2%;
+    text-transform: uppercase;
+}
+.ship_description {
+    margin: 2%;
+}
+.delete_button {
+    position:absolute;
+    bottom:0;
+    right:0;
+    background-color: rgb(160, 41, 41);
+    padding: 3px;
+    padding-top:6px;
+    padding-left:4px;
+    margin:5px;
+    border: solid black 2px;
+}
+
+.delete_button:hover {
+    cursor:pointer;
+    background-color: rgb(226, 58, 58);
 
 }
 .navbar {
@@ -31,4 +80,3 @@ body {
 }
 .navbar-nav {
     width: 90%;
-}
