@@ -43,6 +43,13 @@ Possibilités de scripts __python__ ;
 Sources ;
 * API fan-made pour récupéré des données, notamment sur les vaisseaux https://api.star-citizen.wiki/dashboard
 
+## Infra
+###
+* Client (pc hôte) -> là où on fait la démo et on se connecte au serveur sur le web.
+* Serveur web (VM 1) : Ce repo + server DNS
+* Serveur database (VM 2) : Le serveur mysql
+* Pare-feu (VM 3) : interface entre WAN/pc hôte et serveur web
+
 ~
 
 ## Suivi
@@ -104,3 +111,4 @@ __28/05/2024__
 __29/05/2024__
 * Fait les cartes des vaisseau et l'affichage en liste à partir de leur nom.
 	![Ship List](_suivi/2024.05.29/ship_list.png)
+* Discussion et organisation sur l'infrastructure du projet

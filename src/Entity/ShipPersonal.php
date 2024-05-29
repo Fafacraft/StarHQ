@@ -19,6 +19,9 @@ class ShipPersonal
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $priority = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class ShipPersonal
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(?int $priority): static
+    {
+        $this->priority = $priority;
 
         return $this;
     }
