@@ -50,6 +50,11 @@ Sources ;
 * Serveur database (VM 2) : Le serveur mysql
 * Pare-feu (VM 3) : interface entre WAN/pc hôte et serveur web
 
+## Accessibilité
+* Couleurs choisis dépendent d'une palette provenant du jeu lui même, cela afin de rendre reconnaissable le site à tout ses joueurs.
+* instauration auto completion pour faciliter la selection de vaisseaux, (plus de problèmes pour les noms compliqués ou trop spécifiques)
+* Création de catégories afin de classer les vaissseaux et leurs capacités/rôle 
+* NavBar épurée pour éviter la confusion au nouveaux arrivant (à l'instare du site officiel qui est très peu beginner friendly)
 ~
 
 ## Suivi
@@ -124,3 +129,5 @@ __30/05/2024__
 * Suppression des classes de tests
 * Couleurs différentes selon les rôles.
 * Bouton d'ajout des vaisseau à la liste personnel
+* Reflexion quant à l'accessibilité du site.
+* Documentation sur l'infra, (linux ou windows?)
