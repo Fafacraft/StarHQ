@@ -124,3 +124,6 @@ __30/05/2024__
 * Suppression des classes de tests
 * Couleurs différentes selon les rôles.
 * Bouton d'ajout des vaisseau à la liste personnel
+	![v1_raw 1](_suivi/2024.05.30/v1_raw_1.png) 
+	![v1_raw 2](_suivi/2024.05.30/v1_raw_2.png) 
+	![v1_raw 3](_suivi/2024.05.30/v1_raw_3.png)
