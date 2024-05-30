@@ -113,6 +113,9 @@ __29/05/2024__
 	![Ship List](_suivi/2024.05.29/ship_list.png)
 * Discussion et organisation sur l'infrastructure du projet
 * Affichage des vaisseaux par rapport à ceux associer à l'utilisateur connecter dans la database
+* Creation de la Navbar avec de l'utilisation de bootstrap
+* Problemes de merges, reglés
+* Creation de la page de connexion automatique
 
 ~
 __30/05/2024__
