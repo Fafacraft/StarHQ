@@ -122,3 +122,4 @@ __30/05/2024__
 * Ajout de la logique du bouton "supprimé" de la liste de vaisseaux et redirection vers sa page
 * Déplacer la barre de recherche sur la page principale
 * Suppression des classes de tests
+* Couleurs différentes selon les rôles.

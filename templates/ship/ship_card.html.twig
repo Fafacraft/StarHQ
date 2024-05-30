@@ -2,7 +2,7 @@
 <div class="ship_card">
     <img class="ship_image" src="{{ ship.imageLink }}">
     <div class="info_panel">
-        <p class="ship_category"> {{ ship.role }}</p>
+        <p class="ship_category" style="background-color:{{ ship.role_color }}"> {{ ship.role }}</p>
         <div class="ship_top">
             <a class="ship_name" href="/ship/{{ ship.Name }}"> {{ship.Name }}</a>
             <p class="ship_size"> {{ ship.size }}</p>
