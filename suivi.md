@@ -123,3 +123,4 @@ __30/05/2024__
 * Déplacer la barre de recherche sur la page principale
 * Suppression des classes de tests
 * Couleurs différentes selon les rôles.
+* Bouton d'ajout des vaisseau à la liste personnel

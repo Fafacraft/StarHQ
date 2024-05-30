@@ -63,7 +63,18 @@ body {
     background-color: rgb(226, 58, 58);
 
 }
-
+.add_button {
+    background-color: rgb(21, 117, 21);
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+    border: solid black;
+}
+.add_button:hover {
+    background-color: rgb(39, 189, 39);
+    color: black;
+    cursor: pointer;
+}
 
 
 .navbar {

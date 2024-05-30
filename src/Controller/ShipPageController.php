@@ -40,6 +40,7 @@ class ShipPageController extends AbstractController
         
         return $this->render('ship/ship_page.html.twig', [
             "shipImageLink" => $imageLink,
+            "name" => $name,
         ]);
     }
 }
