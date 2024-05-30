@@ -6,19 +6,27 @@ body {
 
 .ship_card {
     display:flex;
+    margin-bottom: 15px;
 }
 .ship_image {
-    height:200px;
+    height:300px;
 }
 .info_panel{
     position:relative;
     background-color: #4094c4;
-    width:500px;
-    height:200px;
+    width:600px;
+    height:300px;
 }
 .ship_name {
     color: #0e3952;
+    font-size: 32px;
+    text-decoration: none;
     margin:0;   
+}
+.ship_name:hover {
+    cursor: pointer;
+    color: #1e73a5;
+    text-decoration: underline;
 }
 .ship_category {
     background-color: rgb(121, 156, 201);
@@ -46,8 +54,6 @@ body {
     right:0;
     background-color: rgb(160, 41, 41);
     padding: 3px;
-    padding-top:6px;
-    padding-left:4px;
     margin:5px;
     border: solid black 2px;
 }
@@ -57,6 +63,9 @@ body {
     background-color: rgb(226, 58, 58);
 
 }
+
+
+
 .navbar {
 
     background-color: #101824;

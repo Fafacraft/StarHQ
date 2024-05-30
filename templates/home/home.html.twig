@@ -4,10 +4,50 @@
 
 {% block body %}
 <div class="main_page">
+
+    <h3>Search for a ship !</h3>
+    <form>
+        <input type="text" id="ship-search" placeholder="Type a ship name">
+    </form>
+
     <div class="ship_gallery">
         {% for ship in ships %}
             {% include 'ship/ship_card.html.twig' with { 'ship': ship } %}
         {% endfor %}
     </div>
 </div>
+
+<script>
+    // autocomplete feature
+    $(function() {
+        $("#ship-search").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "{{ path('api_ships') }}",
+                    data: {
+                        q: request.term
+                    },
+                    success: function(data) {
+                        response(data);
+                    },
+                    error: function() {
+                        response([]);
+                    }
+                });
+            },
+            minLength: 2
+        });
+
+        // Redirect when Enter key is pressed
+        $("#ship-search").on("keypress", function(event) {
+            if (event.which === 13) { // 13 is the Enter key code
+                // Get the selected ship name
+                var selectedShip = $(this).val();
+                
+                // Redirect to the ship page
+                window.location.href = "/ship/" + encodeURIComponent(selectedShip);
+            }
+        });
+    });
+</script>
 {% endblock %}

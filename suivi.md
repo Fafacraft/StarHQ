@@ -113,3 +113,9 @@ __29/05/2024__
 	![Ship List](_suivi/2024.05.29/ship_list.png)
 * Discussion et organisation sur l'infrastructure du projet
 * Affichage des vaisseaux par rapport à ceux associer à l'utilisateur connecter dans la database
+
+~
+__30/05/2024__
+* Ajout de la logique du bouton "supprimé" de la liste de vaisseaux et redirection vers sa page
+* Déplacer la barre de recherche sur la page principale
+* Suppression des classes de tests

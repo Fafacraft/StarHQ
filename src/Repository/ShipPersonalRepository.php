@@ -31,13 +31,19 @@ class ShipPersonalRepository extends ServiceEntityRepository
         ;
     }
 
-    //    public function findOneBySomeField($value): ?ShipPersonal
-    //    {
-    //        return $this->createQueryBuilder('s')
-    //            ->andWhere('s.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    public function findPrecise($user, $name, $priority): ?ShipPersonal
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.email = :email')
+            ->andWhere('s.name = :name')
+            ->andWhere('s.priority = :priority')
+            ->setParameter('email', $user)
+            ->setParameter('name', $name)
+            ->setParameter('priority', $priority)
+            ->orderBy('s.priority', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }

@@ -36,13 +36,15 @@ class HomeController extends AbstractController
 
     private function getAllUserShips():array
     {
-        // TODO: get all ships name the logged in user has
-        $ship_names = $this->getAllShipFromCurrentUser();
+        // get all user shipPersonal
+        $shipsPersonals = $this->getAllShipFromCurrentUser();
 
         // get all necessary info from the ships
         $ships = array();
+        foreach ($shipsPersonals as $shipPersonal) {
+            $name = $shipPersonal->getName();
+            $priority = $shipPersonal->getPriority();
 
-        foreach ($ship_names as $name) {
             $ship = $this->shipRepository->findOneByName($name);
             if ($ship == null) {
                 $this->logger->warning("Couldn't find ship named " . $name);
@@ -59,6 +61,7 @@ class HomeController extends AbstractController
                 $ship_clear[$cleanKey] = $value;
             }
             $ship_clear['imageLink'] = $imageLink;
+            $ship_clear['priority'] = $priority;
             array_push($ships, $ship_clear);
         }
 
@@ -70,12 +73,7 @@ class HomeController extends AbstractController
         $email = $this->getUser()->getUserIdentifier();
         $ships = $this->shipPersonalRepository->findByUser($email);
 
-        // get only the names
-        $shipNames = [];
-        foreach ($ships as $ship) {
-            $shipNames[] = $ship->getName();
-        }
 
-        return $shipNames;
+        return $ships;
     }
 }
