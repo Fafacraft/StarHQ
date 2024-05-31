@@ -48,4 +48,30 @@ class ShipPersonalController extends AbstractController
 
         return $this->redirectToRoute('app_home');
     }
+
+    // star or unstar the ship
+    #[Route('/api/shippersonal/star', name: 'api_shippersonal_add')]
+    public function starShip(EntityManagerInterface $em, Request $request, LoggerInterface $logger): Response
+    {
+        $email = $this->getUser()->getUserIdentifier();
+        $name = $request->query->get('name');
+        $priority = $request->query->get('priority');
+        $shipPersonal = $em->getRepository(ShipPersonal::class)->findPrecise($email, $name, $priority);
+
+        if ($shipPersonal == null) {
+            $logger->warning("Can't find shipPersonal with " . $name . " of " . $email . " in ShipPersonalController /delete");
+            return $this->redirectToRoute('app_home');
+        }
+
+        if ($shipPersonal->getPriority() == null || $shipPersonal->getPriority() == 0) {
+            $shipPersonal->setPriority(1);
+        } else {
+            $shipPersonal->setPriority(0);
+        }
+
+        $em->persist($shipPersonal);
+        $em->flush();
+
+        return $this->redirectToRoute('app_home');
+    }
 }

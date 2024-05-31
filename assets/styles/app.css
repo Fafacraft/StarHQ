@@ -1,21 +1,34 @@
 body {
-    background-color: lightgrey;
+    background-color: rgb(0, 0, 12);
     margin: 0;
     font-family: 'Orbitron', sans-serif;
+}
+.main_page {
+    position:absolute;
+    display:flex;
+    width:100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .ship_card {
     display:flex;
     margin-bottom: 15px;
+    border: 3px solid rgb(1, 38, 59);
 }
 .ship_image {
     height:300px;
 }
+.ship_image:hover {
+    cursor: pointer;
+    opacity:0.5;
+}
 .info_panel{
     position:relative;
-    background-color: #4094c4;
+    background-color: #29668a;
     width:600px;
     height:300px;
+    color : rgb(163, 191, 223);
 }
 .ship_name {
     color: #0e3952;
@@ -74,6 +87,35 @@ body {
     background-color: rgb(39, 189, 39);
     color: black;
     cursor: pointer;
+}
+.ship_search_bar {
+    color: white;
+    margin: 5px;
+}
+.star_button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+.hangar_img {
+    position:relative;
+}
+.hangar_img img{
+    width: 1000px;
+    height: 400px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+.hangar_img_title{
+    position: absolute;
+    z-index: 1;
+    color: rgb(201, 212, 214);
+    top:40%;
+    left:20%;
+    font-size: 64px;
+    font-weight: 900;
 }
 
 
