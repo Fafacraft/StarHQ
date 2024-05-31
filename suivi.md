@@ -141,3 +141,8 @@ __31/05/2024__
 * Ajout graphiques sur la page d'acceuil
 * Ajout d'infos et une page de vaisseau plus jolie
 * Ajout d'une image par défaut, lorsqu'il n'y a pas d'image
+### Objectif principal complet ;
+On peut se connecter, voir les vaisseau que l'on a, et ajouter/supprimer des vaisseau de cette liste. C'est une V1 local !
+![Home page](_suivi/2024.05.31/HomePage.png)
+![Ship page](_suivi/2024.05.31/ShipPage.png)
+Focus maintenant : l'infra, les VMs.
