@@ -139,3 +139,5 @@ __30/05/2024__
 __31/05/2024__
 * Ajout de l'étoile (favoris -> vaisseaux passent en premier dans la liste)
 * Ajout graphiques sur la page d'acceuil
+* Ajout d'infos et une page de vaisseau plus jolie
+* Ajout d'une image par défaut, lorsqu'il n'y a pas d'image

@@ -64,34 +64,7 @@ class HomeController extends AbstractController
             $ship_clear['priority'] = $priority;
 
             // change the color of the "role" part on the ship card, depending of each role
-            switch ($ship_clear['role']) {
-                case "combat":
-                    $ship_clear['role_color'] = "#e23535"; // red
-                    break;
-                case "exploration":
-                    $ship_clear['role_color'] = "#2d89e1"; // blue
-                    break;
-                case "competition":
-                    $ship_clear['role_color'] = "#08b122"; // green
-                    break;
-                case "industrial":
-                    $ship_clear['role_color'] = "#f8d142"; // yellow
-                    break;
-                case "multi":
-                    $ship_clear['role_color'] = "#3aebc8"; // cyan
-                    break;
-                case "ground":
-                    $ship_clear['role_color'] = "#a96f4c"; // brown
-                    break;
-                case "support":
-                    $ship_clear['role_color'] = "#f2aae4"; // pink
-                    break;
-                case "transport":
-                    $ship_clear['role_color'] = "#f68948"; // orange
-                    break;
-                default:
-                    $ship_clear['role_color'] = "";
-            }
+            $ship_clear['role_color'] = getRoleColor($ship_clear['role']);
 
             array_push($ships, $ship_clear);
         }

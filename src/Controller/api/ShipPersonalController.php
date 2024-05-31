@@ -50,7 +50,7 @@ class ShipPersonalController extends AbstractController
     }
 
     // star or unstar the ship
-    #[Route('/api/shippersonal/star', name: 'api_shippersonal_add')]
+    #[Route('/api/shippersonal/star', name: 'api_shippersonal_star')]
     public function starShip(EntityManagerInterface $em, Request $request, LoggerInterface $logger): Response
     {
         $email = $this->getUser()->getUserIdentifier();

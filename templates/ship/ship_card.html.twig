@@ -1,7 +1,11 @@
 {% block body %}
 <div class="ship_card">
     <a href="/ship/{{ ship.Name }}">
+        {% if ship.imageLink %}
         <img class="ship_image" src="{{ ship.imageLink }}">
+        {% else %}
+        <img src="{{ asset('images/unknown_ship_image.png')}}">
+        {% endif %}
     </a>
     <div class="info_panel">
         <p class="ship_category" style="background-color:{{ ship.role_color }}"> {{ ship.role }}</p>

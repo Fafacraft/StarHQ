@@ -35,12 +35,18 @@ class ShipPageController extends AbstractController
             $logger->notice("Couldn't find ship named " . $name);
             return $this->redirectToRoute('app_home');
         }
+
         // get ship image
         $imageLink = $this->em->getRepository(ShipImage::class)->findLinkByName($name);
+
+        // get role color
+        $role_color = getRoleColor($ship->getRole());
         
         return $this->render('ship/ship_page.html.twig', [
             "shipImageLink" => $imageLink,
             "name" => $name,
+            "ship" => $ship,
+            "role_color" => $role_color,
         ]);
     }
 }

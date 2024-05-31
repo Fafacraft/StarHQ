@@ -1,12 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ship{% endblock %}
+{% block title %}{{ ship.Name }}{% endblock %}
 
 {% block body %}
 <div class="main_page">
-    {% if shipImageLink %}
-    <img src="{{ shipImageLink }}">
-    {% endif %}
+    <div class="ship_page_img">
+        {% if shipImageLink %}
+        <img src="{{ shipImageLink }}">
+        {% else %}
+        <img src="{{ asset('images/unknown_ship_image.png')}}">
+        {% endif %}
+    <h3 class="hangar_img_title"> {{ ship.Name }} </h3>
+    </div>
+    <div class="ship_stat">
+        <div class="ship_role" style="background-color:{{ role_color }}">
+            {{ship.role}}
+        </div>
+        <p> | Size : {{ ship.size}} </p>
+        <p> | Manufacturer : {{ ship.manufacturer}} </p>
+        {% if ship.SpeedMax %}
+        <p> | Max Speed : {{ ship.SpeedMax}} m/s</p>
+        {% endif %}
+        <p> | Cargo : {{ ship.CargoCapacity}} scu </p>
+        {% if ship.IrlPrice %}
+        <p> | Price : ${{ ship.IrlPrice}}</p>
+        {% endif %}
+    </div>
+    <div class="ship_description">
+        {{ship.description}}
+    </div>
     <a class="add_button" href="/api/shippersonal/add?name={{ name }}"> Add to owned Ships </a>
+    
+    <div class="ship_pledge_link">
+        <a href="{{ship.pledgeLink}}" target="_blank"> {{ ship.pledgeLink }}</a>
+    </div>
 </div>
 {% endblock %}

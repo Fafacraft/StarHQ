@@ -112,10 +112,44 @@ body {
     position: absolute;
     z-index: 1;
     color: rgb(201, 212, 214);
-    top:40%;
-    left:20%;
+    transform: translateX(-50%) translateY(-50%);
+    top:80%;
+    left:50%;
+    text-wrap: nowrap;
     font-size: 64px;
     font-weight: 900;
+}
+.ship_page_img {
+    position:absolute;
+}
+.ship_page_img img{
+    opacity: 0.7;
+}
+.ship_role {
+    text-transform: uppercase;
+    padding: 2px;
+    font-size: 24px;
+    color: black;
+}
+.ship_description {
+    color: rgb(201, 212, 214);
+}
+.ship_stat {
+    display:flex;
+    align-items: baseline;
+    font-size: large;
+    color: rgb(201, 212, 214);
+    margin-top: 400px;
+}
+.ship_stat p{
+    margin-left: 30px;
+}
+.ship_pledge_link {
+    margin-top: 20px;
+}
+.ship_pledge_link a{
+    color: rgb(49, 152, 170);
+    text-decoration: none;
 }
 
 
