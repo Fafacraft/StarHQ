@@ -42,7 +42,8 @@ class ShipPersonalRepository extends ServiceEntityRepository
             ->setParameter('priority', $priority)
             ->orderBy('s.priority', 'DESC')
             ->getQuery()
-            ->getOneOrNullResult()
+            ->setMaxResults(1)
+            ->getResult()[0]
         ;
     }
 }
