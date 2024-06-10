@@ -1,0 +1,49 @@
+Steps to setting up the Database server:
+creating a new Virtual machine
+-allocate 4gb of ram in order to facilitate its use
+-give name DBServer
+-setup username to liking
+    -starhq
+    -azerty
+-i split for easy keeping of the data
+-proceed with generic installation (the settings needed should already be selected)
+-once again i set up my username and password
+    -starhq
+    -azerty
+-choose time zone paris and proceed with installation
+
+once the OS installed and operational
+-restart
+open the termminal andf type the following commands
+    -sudo apt update && sudo apt upgrade -y
+now to intall mysql server
+    -sudo apt install mysql-server -y
+    -sudo systemctl start mysql
+    -sudo systemctl enable mysql
+to ensure a secure sql installation
+    -sudo mysql_secure_installation
+i set my lvl of security to low (0)
+-i decide to keep anonymous user
+-i also dont disallow root login remotely
+-removing test database and access to it
+-and reloading priviledges tables
+Secure Insatlation is done
+    -sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+once in nano find the line bind-address = 127.0.0.1 and change it to bind-address = 0.0.0.0. add it otherwise
+-restart mysql
+    -sudo systemctl restart mysql
+-log into MySQL as root:
+    -sudo mysql -u root -p
+-create a new database
+    -CREATE DATABASE mydatabase;
+-create a new user and grant remote access
+    -CREATE USER 'myuser'@'%' IDENTIFIED BY 'mypassword'; (problem with the password which doesnt satisfy SQLs policy requirements)
+(START OVER????)
+     GRANT ALL PRIVILEGES ON mydatabase.* TO 'myuser'@'%';
+     FLUSH PRIVILEGES;
+
+
+Steps to setting up the The firewall VM:
+
+
+server DNS:
