@@ -34,7 +34,7 @@ class ShipPageController extends AbstractController
         $ship = $this->shipRepository->findOneByName($name);
         if ($ship == Null) {
             $logger->notice("Couldn't find ship named " . $name);
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_all_ships');
         }
 
         // get ship image

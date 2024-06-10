@@ -154,7 +154,12 @@ body {
 .ship_already_owned{
     color:rgb(32, 161, 32);
 }
-
+.dropdown_menus{
+    display:flex;
+    width: 25%;
+    justify-content:space-around;
+    margin:20px;
+}
 
 .navbar {
 

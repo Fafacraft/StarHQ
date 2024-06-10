@@ -11,6 +11,59 @@
         </form>
     </div>
 
+    <div class="dropdown_menus">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ role }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="?role=combat">Combat</a>
+                <a class="dropdown-item" href="?role=competition">Competition</a>
+                <a class="dropdown-item" href="?role=exploration">Exploration</a>
+                <a class="dropdown-item" href="?role=ground">Ground</a>
+                <a class="dropdown-item" href="?role=industrial">Industrial</a>
+                <a class="dropdown-item" href="?role=multi">Multi</a>
+                <a class="dropdown-item" href="?role=support">Support</a>
+                <a class="dropdown-item" href="?role=transport">Transport</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ size }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="?size=capital">Capital</a>
+                <a class="dropdown-item" href="?size=large">Large</a>
+                <a class="dropdown-item" href="?size=medium">Medium</a>
+                <a class="dropdown-item" href="?size=small">Small</a>
+                <a class="dropdown-item" href="?size=snub">Snub</a>
+                <a class="dropdown-item" href="?size=vehicle">Vehicle</a>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ manufacturer}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="?manufacturer=aegis">Aegis Dynamics</a>
+                <a class="dropdown-item" href="?manufacturer=alien">Alien</a>
+                <a class="dropdown-item" href="?manufacturer=anvil">Anvil Aerospace</a>
+                <a class="dropdown-item" href="?manufacturer=argo">Argo Astronautics</a>
+                <a class="dropdown-item" href="?manufacturer=crusader">Crusader Industries</a>
+                <a class="dropdown-item" href="?manufacturer=drake">Drake Interplanetary</a>
+                <a class="dropdown-item" href="?manufacturer=esperia">Esperia</a>
+                <a class="dropdown-item" href="?manufacturer=mirai">Mirai</a>
+                <a class="dropdown-item" href="?manufacturer=misc">MISC</a>
+                <a class="dropdown-item" href="?manufacturer=origin">Origin Jumpworks</a>
+                <a class="dropdown-item" href="?manufacturer=rsi">RSI</a>
+                <a class="dropdown-item" href="?manufacturer=tumbril">Tumbril Land System</a>
+                <a class="dropdown-item" href="?manufacturer=other">Others</a>
+            </div>
+        </div>
+    </div>
+
     <div class="ship_gallery">
         {% for ship in ships %}
             {% include 'ship/ship_card.html.twig' with { 'ship': ship } %}
@@ -20,7 +73,7 @@
 
 <script>
     // autocomplete feature
-    $(function() {
+    $(document).ready(function() {
         $("#ship-search").autocomplete({
             source: function(request, response) {
                 $.ajax({
@@ -50,5 +103,28 @@
             }
         });
     });
+</script>
+
+<script>
+  // manually redirect dropdown menus, fix some weird issues with turbo and importmap
+
+(function() {
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
+
+  // Add click event listeners to each dropdown item
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Prevent the default behavior of the click event
+      event.preventDefault();
+
+      // Get the URL of the dropdown item
+      const url = item.getAttribute('href');
+
+      // Navigate to the URL with parameters
+      window.location.href = url;
+
+    });
+  });
+})();
 </script>
 {% endblock %}

@@ -26,18 +26,58 @@ class AllShipsController extends AbstractController
 
 
     #[Route('/all_ships', name: 'app_all_ships')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $ships = $this->getAllShips();
+        $role = $request->query->get('role');
+        $size = $request->query->get('size');
+        $manufacturer = $request->query->get('manufacturer');
+
+        $ships = array();
+        if ($role != null) {
+            $ships = $this->shipRepository->findAllShipsByRole($role);
+        } else if ($size != null) {
+            $ships = $this->shipRepository->findAllShipsBySize($size);
+        } else if ($manufacturer != null) {
+            $manufacturer_array = [];
+            switch ($manufacturer) {
+                case "aegis": $manufacturer_array = ["Aegis Dynamics"];break;
+                case "alien": $manufacturer_array = ["Aopoa", "Banu", "Gatac Manufacture"];break;
+                case "anvil": $manufacturer_array = ["Anvil Aerospace"];break;
+                case "argo": $manufacturer_array = ["Argo Astronautics"];break;
+                case "crusader": $manufacturer_array = ["Crusader Industries"];break;
+                case "drake": $manufacturer_array = ["Drake Interplanetary"];break;
+                case "esperia": $manufacturer_array = ["Esperia"];break;
+                case "mirai": $manufacturer_array = ["Mirai"];break;
+                case "misc": $manufacturer_array = ["MISC", "Musashi Industrial and Starflight Concern"];break;
+                case "origin": $manufacturer_array = ["Origin Jumpworks"];break;
+                case "rsi": $manufacturer_array = ["Roberts Space Industries"];break;
+                case "tumbril": $manufacturer_array = ["Tumbril", "Tumbril Land Systems"];break;
+                case "other": $manufacturer_array = ["Consolidated Outland", "Greycat Industrial", "Kruger Intergalatic"];
+            };
+            $ships = $this->shipRepository->findAllShipsByManufacturer($manufacturer_array);
+
+        } else { 
+            $ships = $this->shipRepository->findAllShips();
+        }
+
+
+        if ($role == null) {$role = "Role";}
+        if ($size == null) {$size = "Size";}
+        if ($manufacturer == null) {$manufacturer = "Manufacturer";}
+
+        
+        $ships_final = $this->getAllShips($ships);
+
         return $this->render('ship/all_ships.html.twig', [
-            'ships' => $ships,
+            'ships' => $ships_final,
+            'role' => $role,
+            'size' => $size,
+            'manufacturer' => $manufacturer,
         ]);
     }
 
-    private function getAllShips():array
+    private function getAllShips($ships):array
     {
-        $ships = $this->shipRepository->findAllShips();
-
         $ships_final = array();
 
         // get all necessary info from the ships
