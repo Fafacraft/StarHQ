@@ -146,3 +146,9 @@ On peut se connecter, voir les vaisseau que l'on a, et ajouter/supprimer des vai
 ![Home page](_suivi/2024.05.31/HomePage.png)
 ![Ship page](_suivi/2024.05.31/ShipPage.png)
 Focus maintenant : l'infra, les VMs.
+
+__08/06/2024__
+* Création de la VM server database.
+* Problème avec l'ancien iso ubuntu, nécessite de reinstaller et recommencer.
+* bloquer par le mdp que SQL ne veut pas accepter car trop court
+
