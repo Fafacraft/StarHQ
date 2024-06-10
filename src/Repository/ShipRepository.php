@@ -65,4 +65,13 @@ class ShipRepository extends ServiceEntityRepository
         // Execute the query and get the result
         return $qb->getQuery()->getResult();
     }
+
+    // get all ships
+    public function findAllShips()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Name', 'ASC') // Order by name in ascending order
+            ->getQuery()
+            ->getResult();
+    }
 }

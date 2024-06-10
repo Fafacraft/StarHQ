@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ShipRepository;
 
-class HomeController extends AbstractController
+class AllShipsController extends AbstractController
 {
     private $shipRepository;
     private $shipImageRepository;
@@ -25,31 +25,25 @@ class HomeController extends AbstractController
     }
 
 
-    #[Route('/home', name: 'app_home')]
+    #[Route('/all_ships', name: 'app_all_ships')]
     public function index(): Response
     {
-        $ships = $this->getAllUserShips();
-        return $this->render('home/home.html.twig', [
+        $ships = $this->getAllShips();
+        return $this->render('ship/all_ships.html.twig', [
             'ships' => $ships,
         ]);
     }
 
-    private function getAllUserShips():array
+    private function getAllShips():array
     {
-        // get all user shipPersonal
-        $shipsPersonals = $this->getAllShipFromCurrentUser();
+        $ships = $this->shipRepository->findAllShips();
+
+        $ships_final = array();
 
         // get all necessary info from the ships
-        $ships = array();
-        foreach ($shipsPersonals as $shipPersonal) {
-            $name = $shipPersonal->getName();
-            $priority = $shipPersonal->getPriority();
+        foreach ($ships as $ship) {
+            $name = $ship->getName();
 
-            $ship = $this->shipRepository->findOneByName($name);
-            if ($ship == null) {
-                $this->logger->warning("Couldn't find ship named " . $name);
-                continue;
-            }
             $imageLink = $this->shipImageRepository->findLinkByName($name);
 
             // easier to handle as an array
@@ -61,24 +55,14 @@ class HomeController extends AbstractController
                 $ship_clear[$cleanKey] = $value;
             }
             $ship_clear['imageLink'] = $imageLink;
-            $ship_clear['priority'] = $priority;
 
             // change the color of the "role" part on the ship card, depending of each role
             $ship_clear['role_color'] = getRoleColor($ship_clear['role']);
-            $ship_clear['with_button'] = true;
+            $ship_clear['with_button'] = false;
 
-            array_push($ships, $ship_clear);
+            array_push($ships_final, $ship_clear);
         }
 
-        return $ships;
-    }
-
-    private function getAllShipFromCurrentUser(): array
-    {
-        $email = $this->getUser()->getUserIdentifier();
-        $ships = $this->shipPersonalRepository->findByUser($email);
-
-
-        return $ships;
+        return $ships_final;
     }
 }
