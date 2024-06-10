@@ -151,6 +151,9 @@ body {
     color: rgb(49, 152, 170);
     text-decoration: none;
 }
+.ship_already_owned{
+    color:rgb(32, 161, 32);
+}
 
 
 .navbar {

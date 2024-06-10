@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Repository\ShipRepository;
 use App\Entity\ShipImage;
+use App\Entity\ShipPersonal;
 
 class ShipPageController extends AbstractController
 {
@@ -41,12 +42,19 @@ class ShipPageController extends AbstractController
 
         // get role color
         $role_color = getRoleColor($ship->getRole());
+
+        // get nb of ship owned for the logged user
+        $email = $this->getUser()->getUserIdentifier();
+        $nb_ship = $this->em->getRepository(ShipPersonal::class)->findNbShips($email, $name);
+
+
         
         return $this->render('ship/ship_page.html.twig', [
             "shipImageLink" => $imageLink,
             "name" => $name,
             "ship" => $ship,
             "role_color" => $role_color,
+            "nb_ship" => $nb_ship,
         ]);
     }
 }

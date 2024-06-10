@@ -146,3 +146,7 @@ On peut se connecter, voir les vaisseau que l'on a, et ajouter/supprimer des vai
 ![Home page](_suivi/2024.05.31/HomePage.png)
 ![Ship page](_suivi/2024.05.31/ShipPage.png)
 Focus maintenant : l'infra, les VMs.
+
+~
+__10/06/2024__
+* Montre si l'on a déjà le vaisseau dans son hangar, depuis la page de vaisseau
