@@ -31,6 +31,7 @@ class ShipPersonalRepository extends ServiceEntityRepository
         ;
     }
 
+    // find a specific shipPersonal
     public function findPrecise($user, $name, $priority): ?ShipPersonal
     {
         return $this->createQueryBuilder('s')
@@ -44,6 +45,20 @@ class ShipPersonalRepository extends ServiceEntityRepository
             ->getQuery()
             ->setMaxResults(1)
             ->getResult()[0]
+        ;
+    }
+
+    // number of ship for user
+    public function findNbShips($user, $name): ?int
+    {
+        return $this->createQueryBuilder('s')
+            ->select('count(s.id)')
+            ->andWhere('s.email = :email')
+            ->andWhere('s.name = :name')
+            ->setParameter('email', $user)
+            ->setParameter('name', $name)
+            ->getQuery()
+            ->getSingleScalarResult()
         ;
     }
 }

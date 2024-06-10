@@ -65,6 +65,7 @@ class HomeController extends AbstractController
 
             // change the color of the "role" part on the ship card, depending of each role
             $ship_clear['role_color'] = getRoleColor($ship_clear['role']);
+            $ship_clear['with_button'] = true;
 
             array_push($ships, $ship_clear);
         }

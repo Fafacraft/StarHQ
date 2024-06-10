@@ -29,6 +29,17 @@
     <div class="ship_description">
         {{ship.description}}
     </div>
+
+    {% if nb_ship == 1 %}
+    <div class="ship_already_owned">
+        You already own this ship !
+    </div>
+    {% elseif nb_ship > 1 %}
+    <div class="ship_already_owned">
+        You already own this ship {{nb_ship}} times !
+    </div>
+    {% endif %}
+
     <a class="add_button" href="/api/shippersonal/add?name={{ name }}"> Add to owned Ships </a>
     
     <div class="ship_pledge_link">

@@ -65,4 +65,47 @@ class ShipRepository extends ServiceEntityRepository
         // Execute the query and get the result
         return $qb->getQuery()->getResult();
     }
+
+    // get all ships
+    public function findAllShips()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.Name', 'ASC') // Order by name in ascending order
+            ->getQuery()
+            ->getResult();
+    }
+
+    
+    // get all ships by role
+    public function findAllShipsByRole($role)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.role = :role')
+            ->setParameter('role', $role)
+            ->orderBy('s.Name', 'ASC') // Order by name in ascending order
+            ->getQuery()
+            ->getResult();
+    }
+
+    // get all ships by size
+    public function findAllShipsBySize($size)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.size = :size')
+            ->setParameter('size', $size)
+            ->orderBy('s.Name', 'ASC') // Order by name in ascending order
+            ->getQuery()
+            ->getResult();
+    }
+
+    // get all ships by manufacturer
+    public function findAllShipsByManufacturer($manufacturer)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.manufacturer IN (:manufacturer)')
+            ->setParameter('manufacturer', $manufacturer)
+            ->orderBy('s.Name', 'ASC') // Order by name in ascending order
+            ->getQuery()
+            ->getResult();
+    }
 }

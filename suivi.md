@@ -152,3 +152,11 @@ __08/06/2024__
 * Problème avec l'ancien iso ubuntu, nécessite de reinstaller et recommencer.
 * bloquer par le mdp que SQL ne veut pas accepter car trop court
 
+
+
+~
+__10/06/2024__
+* Montre si l'on a déjà le vaisseau dans son hangar, depuis la page de vaisseau
+* Ajout de la page de la liste complète des vaisseau
+* Options de tris pour chercher les vaisseau par role, taille et constructeurs
+* Ajout de redirections vers la page de login, simplification de navigations...
