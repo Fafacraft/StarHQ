@@ -152,3 +152,4 @@ __10/06/2024__
 * Montre si l'on a déjà le vaisseau dans son hangar, depuis la page de vaisseau
 * Ajout de la page de la liste complète des vaisseau
 * Options de tris pour chercher les vaisseau par role, taille et constructeurs
+* Ajout de redirections vers la page de login, simplification de navigations...
