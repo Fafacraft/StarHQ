@@ -161,3 +161,6 @@ __10/06/2024__
 * Infra, DBServer première itération 
 * Création d'un Server DNS en utilisant ubuntu (possible changement)
 
+__11/06/2024__
+* Soucis avec l'infra; impossible de ping la DB depuis ma machine
+
