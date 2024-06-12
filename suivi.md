@@ -167,3 +167,4 @@ __11/06/2024__
 __12/06/2024__
 * Soucis avec l'infra; changement de OS pour windows
 * Ancienne modifications problématiques résolues
+* Sanité exténuée
