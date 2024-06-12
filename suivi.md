@@ -164,3 +164,6 @@ __10/06/2024__
 __11/06/2024__
 * Soucis avec l'infra; impossible de ping la DB depuis ma machine
 
+__12/06/2024__
+* Soucis avec l'infra; changement de OS pour windows
+* Ancienne modifications problématiques résolues
