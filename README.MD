@@ -1,8 +1,6 @@
 # StarHq
 This is a project of a companion app for the game Star Citizen
 
-Very WIP, raw for now.
-
 
 ## INSTALL (in local dev environment)
 __Prerequisite__
@@ -19,8 +17,6 @@ __Prerequisite__
 ### To initialize database
 `symfony console app:load-ships`  // load ships data from external API into the database
 `symfony console app:load-ship-images`  // load ships image from the robertspaceindustries.com website, needs to have the ship database loaded.
-
-WIP
 
 
 

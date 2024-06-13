@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Utils;
+
 // get the color depending of the role
 function getRoleColor($role) {
 
